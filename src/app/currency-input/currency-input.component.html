@@ -1,0 +1,29 @@
+<div class="form-container">
+<form (ngSubmit)="getCurrentCurrencyValue()" #currencyForm="ngForm" class="form">
+  <div class="form-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Name:</mat-label>
+      <input matInput type="text" id="name" name="name" [(ngModel)]="name" required />
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Surname:</mat-label>
+      <input matInput type="text" id="surname" name="surname" [(ngModel)]="surname" required />
+    </mat-form-field>
+  </div>
+  <div class="form-field">
+    <mat-form-field appearance="outline">
+      <mat-label>Currency Code:</mat-label>
+      <input matInput type="text" id="currencyCode" name="currencyCode" [(ngModel)]="currencyCode" required
+             pattern="[A-Z]{3}" #currencyCodeInput="ngModel" />
+      <mat-error class="error" *ngIf="currencyCodeInput.invalid && (currencyCodeInput.dirty || currencyCodeInput.touched)">
+        Please enter a valid currency code (e.g., USD, EUR, GBP).
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!currencyForm.valid">
+    <mat-icon>search</mat-icon>Get Currency Value
+  </button>
+</form>
+</div>
